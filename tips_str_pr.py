@@ -18,7 +18,7 @@ if st.sidebar.button('Помощь',
                   disabled=False, 
                   use_container_width=False):
     st.sidebar.write("Это программа принимает для обработки только файлы формата CSV с заданными параметрами столбцов. В ином случае просьба использовать программу FCD.Q1")
-
+    
 if uploaded_file is not None:
     try:
         df = pd.read_csv(uploaded_file)
@@ -38,6 +38,12 @@ st.bar_chart(data=df,
              width=None,
              height=None,
              use_container_width=True)
+# fig1, ax1 = plt.subplots()
+# ax1.plot('day','tip')
+# ax1.set_title('Объём чаевых по дням недели')
+# fig1.savefig('file_name1.png')
+
+
 st.title('Соотношение чаевых и стоимости заказов')
 df['index_list']=list(range(len(df.index)))
 st.bar_chart(data=df,
@@ -50,6 +56,10 @@ st.bar_chart(data=df,
              width=500,
              height=600,
              use_container_width=True)
+# fig2, ax2 = plt.subplots()
+# ax2.plot('index_list', 'total_bill')
+# ax2.set_title('Соотношение чаевых и стоимости заказов')
+# fig2.savefig('file_name2.png')
 
-st.sidebar.download_button('Скачать график *Объём чаевых по дням недели*','tips_by_week_day')
-st.sidebar.download_button('Скачать график *Соотношение чаевых и стоимости заказов*','332')
+st.sidebar.download_button('Скачать график *Объём чаевых по дням недели*','file_name1.png')
+st.sidebar.download_button('Скачать график *Соотношение чаевых и стоимости заказов*','file_name2.png')
