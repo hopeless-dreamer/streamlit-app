@@ -47,7 +47,7 @@ st.bar_chart(data=df,
              y_label='Стоимость заказа и чаевые',
              color=[(180, 232, 143),(3, 25, 100)],
              horizontal=False,
-             width=500,
+             width=550,
              height=600,
              use_container_width=True)
 
