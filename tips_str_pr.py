@@ -1,6 +1,5 @@
 import streamlit as st 
 import pandas as pd
-import seaborn as sns
 
 st.title(':blue[Чаевые в ресторане] :cake:')
 st.subheader('_Анализ чаевых вашего заведения_')
