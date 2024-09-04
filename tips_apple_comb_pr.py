@@ -1,5 +1,7 @@
 import streamlit as st 
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 import yfinance as yf
 
 page = st.sidebar.selectbox(":blue[Выберите страницу]", ['Чаевые в ресторане', 'Котировки компании Apple'])
