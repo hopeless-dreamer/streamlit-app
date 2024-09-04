@@ -42,10 +42,9 @@ if page == 'Чаевые в ресторане':
                 width=None,
                 height=None,
                 use_container_width=True)
-    # fig1, ax1 = plt.subplots()
-    # ax1.plot('day','tip')
-    # ax1.set_title('Объём чаевых по дням недели')
-    # fig1.savefig('file_name1.png')
+    plt.bar(df['day'],df['tip'])
+    plt.savefig('image1.png')
+    plt.close()
 
 
     st.title('Соотношение чаевых и стоимости заказов')
@@ -60,24 +59,31 @@ if page == 'Чаевые в ресторане':
                 width=500,
                 height=600,
                 use_container_width=True)
-    # fig2, ax2 = plt.subplots()
-    # ax2.plot('index_list', 'total_bill')
-    # ax2.set_title('Соотношение чаевых и стоимости заказов')
-    # fig2.savefig('file_name2.png')
-
-    st.sidebar.download_button('Скачать график *Объём чаевых по дням недели*','file_name1.png')
-    st.sidebar.download_button('Скачать график *Соотношение чаевых и стоимости заказов*','file_name2.png')
-
+    plt.bar(df['index_list'], df['total_bill'], color='orange')
+    plt.bar(df['index_list'], df['tip'], width=1, color='blue')
+    plt.savefig('image2.png')
+    plt.close()
+    with open('image1.png', 'rb') as file1:
+        st.sidebar.download_button('Скачать график *Объём чаевых по дням недели*',
+                                    data=file1,
+                                    file_name='image1.png',
+                                    key='download_btn_1')
+    with open('image2.png', 'rb') as file2:
+        st.sidebar.download_button('Скачать график *Соотношение чаевых и стоимости заказов*',
+                                    data=file2,
+                                    file_name='image2.png',
+                                    key='download_btn_2')
 elif page == 'Котировки компании Apple':
     st.title('Котировки компании Apple')
     st.write('Данные за последние 10 лет')
 
+    st.title('Динамика акций на торгах')
     apple = yf.Ticker("AAPL")
     apple_historical_data = apple.history(period="10y")
     apple_historical_data.index=apple_historical_data.index.date
     st.bar_chart(data=apple_historical_data, 
                 y='Volume',
-                y_label='Стоимость компании', 
+                y_label='Объём акций на торгах', 
                 color=(88,88,3), 
                 horizontal=False, 
                 stack=None, 
